@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "UTF-8">
+	<meta name="viewport" content="width=device-width, intital-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title> index</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		table{
+			position:absolute;
+			left: 0;
+			top: 0;
+			margin: 0;
+			padding: 0;
+		}
+		td{
+			width: 47px;
+			height: 48px;
+		}
+		#map{
+			width: 500px;
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<table border="1" cellspacing="0">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+</table>
+<div id="map">
+</div>
+
+<script type="text/javascript">
+var i, j, k;
+var map = document.getElementById("map");
+var personDiv;
+var stuffDiv;
+var Div;
+var BlockList=[];
+var mapset = [
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+				[1, 4, 0, 0, 0, 0, 0, 0, 0, 1],
+				[1, 0, 1, 1, 0, 0, 1, 1, 0, 1],
+				[1, 0, 1, 1, 0, 0, 1, 1, 0, 1],
+				[1, 0, 1, 1, 0, 2, 1, 1, 0, 1],
+				[1, 0, 1, 1, 3, 0, 1, 1, 0, 1],
+				[1, 0, 1, 1, 0, 0, 1, 1, 0, 1],
+				[1, 0, 1, 1, 0, 0, 1, 1, 0, 1],
+				[1, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+];
+
+window.onload = function() {
+
+
+
+
+	function createDiv(color){
+			var div = document.createElement("div");
+			div.style.width="50px";
+			div.style.height = "50px";
+			div.style.position = "absolute";
+			div.style.backgroundColor=color;
+			map.appendChild(div);
+
+			return div
+
+		}
+
+
+
+function createMap(){	
+
+	for (i = 0; i <10 ; i++) {
+		for (j = 0; j< 10; j++) {
+			Div = createDiv();
+
+			Div.style.left=(j*50)+"px";
+			Div.style.top=(i*50)+"px";
+			Div.id = j + "_"+ i;
+		    if(mapset[i][j] == 0){
+		    Div.parentNode.removeChild(Div);
+
+		    }
+			if(mapset[i][j] == 1){			//blockDiv
+		      Div.style.backgroundColor = "black";
+		      BlockList.push(document.getElementById(j+"_"+i));
+			}
+			if(mapset[i][j] == 2){			//stuffDiv
+		      Div.style.backgroundColor ="blue";
+		      stuffDiv = document.getElementById(j+"_"+i);
+			}
+			if(mapset[i][j] == 3){// personDiv
+		      Div.style.backgroundColor ="red";
+		      //Div.id = 20;
+		      personDiv = document.getElementById(j+"_"+i);
+			}
+			if(mapset[i][j] == 4){ //endDiv
+		     Div.style.backgroundColor = "pink";
+		     }
+	}
+}
+return Div
+}
+
+
+
+
+  createMap();
+  Move();
+
+}
+
+
+
+
+//console.log(personDiv);
+
+
+
+function Move(){
+
+
+
+document.onkeydown = function(e){
+			switch(e.keyCode){
+				case 37://left
+				personDiv.style.left = parseInt(personDiv.style.left)-50 +"px";
+				if (personDiv.style.left == stuffDiv.style.left && personDiv.style.top == stuffDiv.style.top ){
+
+						stuffDiv.style.left = parseInt(personDiv.style.left)-50 +"px";
+					}
+				for(k=0; k<BlockList.length;k++){
+					if(personDiv.style.left == BlockList[k].style.left && personDiv.style.top == BlockList[k].style.top){
+					
+						personDiv.style.left = parseInt(personDiv.style.left)+50 +"px";
+					}
+					if(stuffDiv.style.left == BlockList[k].style.left && stuffDiv.style.top == BlockList[k].style.top ){
+						stuffDiv.style.left = parseInt(stuffDiv.style.left)+50 +"px";
+						personDiv.style.left = parseInt(personDiv.style.left)+50 +"px";
+					}
+
+				}
+
+
+				break
+				case 38://up
+				personDiv.style.top =  parseInt(personDiv.style.top)-50 +"px";
+				if (personDiv.style.left == stuffDiv.style.left && personDiv.style.top == stuffDiv.style.top ){
+
+						stuffDiv.style.top= parseInt(personDiv.style.top)-50 +"px";
+
+					}
+
+					for(k=0; k<BlockList.length;k++){
+					if(personDiv.style.left == BlockList[k].style.left && personDiv.style.top == BlockList[k].style.top){
+						
+						personDiv.style.top = parseInt(personDiv.style.top)+50 +"px";;
+
+				}
+				if(stuffDiv.style.left == BlockList[k].style.left && stuffDiv.style.top == BlockList[k].style.top ){
+						stuffDiv.style.top = parseInt(stuffDiv.style.top)+50 +"px";
+						personDiv.style.top = parseInt(personDiv.style.top)+50 +"px";;
+					}
+			}
+
+				break
+				case 39://right
+				personDiv.style.left = parseInt(personDiv.style.left)+50 +"px";
+			if (personDiv.style.left == stuffDiv.style.left && personDiv.style.top == stuffDiv.style.top ){
+
+						stuffDiv.style.left = parseInt(personDiv.style.left)+50 +"px";
+
+					}
+				for(k=0; k<BlockList.length;k++){
+					if(personDiv.style.left == BlockList[k].style.left && personDiv.style.top == BlockList[k].style.top){
+					
+						personDiv.style.left = parseInt(personDiv.style.left)-50 +"px";
+					}
+					if(stuffDiv.style.left == BlockList[k].style.left && stuffDiv.style.top == BlockList[k].style.top ){
+						stuffDiv.style.left = parseInt(stuffDiv.style.left)-50 +"px";
+						personDiv.style.left = parseInt(personDiv.style.left)-50 +"px";
+					}
+
+
+				}	
+
+				break
+				case 40://down
+				personDiv.style.top =  parseInt(personDiv.style.top)+50 +"px";
+				if (personDiv.style.left == stuffDiv.style.left && personDiv.style.top == stuffDiv.style.top ){
+
+						stuffDiv.style.top= parseInt(personDiv.style.top)+50 +"px";
+
+					}
+				for(k=0; k<BlockList.length;k++){
+					if(personDiv.style.left == BlockList[k].style.left && personDiv.style.top == BlockList[k].style.top){
+						personDiv.style.top = parseInt(personDiv.style.top)-50 +"px";
+					}
+					if(stuffDiv.style.left == BlockList[k].style.left && stuffDiv.style.top == BlockList[k].style.top ){
+						stuffDiv.style.top = parseInt(stuffDiv.style.top)-50 +"px";
+						personDiv.style.top = parseInt(personDiv.style.top)-50 +"px";
+					}
+
+				}
+
+				break
+
+			}
+	}
+
+
+
+	
+	}
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
