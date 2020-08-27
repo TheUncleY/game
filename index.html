@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "UTF-8">
+	<meta name="viewport" content="width=device-width, intital-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title> index</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		table{
+			position:absolute;
+			left: 0;
+			top: 0;
+			margin: 0;
+			padding: 0;
+		}
+		td{
+			width: 47px;
+			height: 48px;
+		}
+		#map{
+			width: 500px;
+			height: 500px;
+			background-color: pink;
+		}
+		h2{
+			display:inline-block;
+		}
+	</style>
+</head>
+<body>
+	<table border="1" cellspacing="0">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+</table>
+<div id="map">
+</div>
+<h2>Score:</h2><h2 id="Score" >0</h2>
+	<script type="text/javascript">
+		var map = document.getElementById("map");
+		var arr = [];
+		var Narr=[];
+		var score=0;
+		var s = 1000;
+		var x;
+		function createDiv(color){
+			var div = document.createElement("div");
+			div.style.width="50px";
+			div.style.height = "50px";
+			div.style.position = "absolute";
+			div.style.left= parseInt(Math.random()*10)*50+"px";
+			div.style.top=parseInt(Math.random()*10)*50+"px";
+			div.style.backgroundColor=color;
+			map.appendChild(div);
+
+			return div
+
+		}
+		var headNode = createDiv("red"); //head
+		Narr.push(headNode);
+		headNode.value = 37;
+		var foodNode = createDiv("blue");//food
+
+		function move(){
+			
+			switch(headNode.value){
+				case 37: //left
+				headNode.style.left = parseInt(headNode.style.left)-50 +"px";
+				break
+				case 38://up
+				headNode.style.top =  parseInt(headNode.style.top)-50 +"px";
+				break
+				case 39://right
+				headNode.style.left = parseInt(headNode.style.left)+50 +"px";
+				break
+				case 40: //down
+				headNode.style.top =  parseInt(headNode.style.top)+50 +"px";
+				break
+			}
+			if(parseInt(headNode.style.left)<0 || parseInt(headNode.style.left)>450 || parseInt(headNode.style.top)<0 || parseInt(headNode.style.top) >450){
+				clearInterval(t);
+				alert("Game Over");
+				headNode.remove();
+			}
+
+			if (arr.length>0) {
+				for (var n = 0; n< arr.length; n++) {
+					if(headNode.style.left ==arr[n].style.left && headNode.style.top ==arr[n].style.top){
+				clearInterval(t);
+				alert("Game Over");
+				headNode.remove();
+					}
+				}
+
+			}
+
+			if(arr.length>0){
+				for(var i =arr.length-1; i>=0;i--){
+					switch(arr[i].value){
+				case 37: //left
+				arr[i].style.left = parseInt(arr[i].style.left)-50 +"px";
+				break
+				case 38://up
+				arr[i].style.top =  parseInt(arr[i].style.top)-50 +"px";
+				break
+				case 39://right
+				arr[i].style.left = parseInt(arr[i].style.left)+50 +"px";
+				break
+				case 40: //down
+				arr[i].style.top =  parseInt(arr[i].style.top)+50 +"px";
+				break
+			}
+			if(i ==0){
+				arr[i].value =headNode.value;
+			}else{
+				
+				arr[i].value = arr[i-1].value;
+
+			}
+			
+
+				}
+
+			}
+
+			if(headNode.style.left == foodNode.style.left && headNode.style.top ==foodNode.style.top){//get the food
+				score = score+1;
+				
+				document.getElementById("Score").innerHTML =score;
+				var bodyNode = createDiv("yellow");
+				var lastNode;
+				if(arr.length>0){
+					lastNode = arr[arr.length-1];
+				} else{
+					lastNode = headNode;
+				}
+				switch(lastNode.value){
+				case 37: //left
+				bodyNode.style.left = parseInt(lastNode.style.left)+50 +"px";
+				bodyNode.style.top = lastNode.style.top;
+				break
+				case 38://up
+				bodyNode.style.top =  parseInt(lastNode.style.top)+50 +"px";
+				bodyNode.style.left = lastNode.style.left;
+				break
+				case 39://right
+				bodyNode.style.left = parseInt(lastNode.style.left)-50 +"px";
+				bodyNode.style.top = lastNode.style.top;
+				break
+				case 40: //down
+				bodyNode.style.top =  parseInt(lastNode.style.top)-50 +"px";
+				bodyNode.style.left = lastNode.style.left;
+				break
+				}
+				bodyNode.value = lastNode.value;
+				arr.push(bodyNode);
+				Narr.push(bodyNode);
+				var px = parseInt(Math.random()*10)*50;
+				var py = parseInt(Math.random()*10)*50;
+				for(var m =0; m<Narr.length;m++){
+					if(parseInt(Narr[m].style.left) ==px &&parseInt(Narr[m].style.top) ==py ){
+						px = parseInt(Math.random()*10)*50;
+						py = parseInt(Math.random()*10)*50;
+						n=-1;
+					}
+
+				
+				}
+				foodNode.style.left =px+"px";
+				foodNode.style.top = py+"px";
+				
+				//change position of the food
+
+			}
+
+		}
+		
+		
+		x = s-score*10;
+		var t = setInterval(move,x);
+
+		document.onkeydown = function(e){
+			switch(e.keyCode){
+				case 37:
+				if(headNode.value !=39 || arr.length==0){
+
+				 headNode.value = 37;
+				}
+				break
+				case 38:
+				if(headNode.value !=40 || arr.length==0){
+				 headNode.value = 38;
+				}
+				break
+				case 39:
+				if(headNode.value !=37 || arr.length==0){
+				 headNode.value = 39;
+				}
+				break
+				case 40:
+				if(headNode.value !=38 || arr.length==0){
+
+				 headNode.value = 40;
+				}
+				break
+
+			}
+
+		}
+
+	</script>
+</body>
+</html>
+
